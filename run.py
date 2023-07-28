@@ -28,11 +28,11 @@ class Player:
         Return the string containing player details
         """
         return f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored}, Games Played: {self.games_played}\n"
-"""
+
 player1 = Player("Dan Suciu", 43)
 
 print(player1)
-"""
+
 class FootballClub:
     def __init__(self):
         """
@@ -56,17 +56,31 @@ class FootballClub:
         except ValueError:
             raise ValueError("Age must be a number between 18 and 50!")
 
+        # Check if a player with the same name and age already exists
+        for player in self.players:
+            if player.name == name and player.age == age:
+                raise ValueError(f"{name}, Age: {age} already exists in the club!")
         player = Player(name, age)
         self.players.append(player)
         print(f"{name} has been added to the club!\n")
 
-"""
+    def delete_player(self, name):
+        """
+        Delete a player from the football club
+        """
+        for player in self.players:
+            if player.name == name:
+                self.players.remove(player)
+                print(f"{name} has been deleted from the club!")
+                return
+        print(f"{name} doesnt belong to this club!")
+
 club = FootballClub()
 
 try:
-    club.add_player("John Doe", 25)
-    club.add_player("Alice Smith", 30)
-    club.add_player("Bob Johnson", 20)
+    club.add_player("Dan Suciu", 43)
+    club.add_player("Chuck Norris", 40)
+    club.add_player("Dan Suciu", 43)
 except ValueError as e:
     print(f"Error: {e}")
-"""
+
