@@ -27,8 +27,46 @@ class Player:
         """
         Return the string containing player details
         """
-        return f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored}, Games Played: {self.games_played}"
-
+        return f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored}, Games Played: {self.games_played}\n"
+"""
 player1 = Player("Dan Suciu", 43)
 
 print(player1)
+"""
+class FootballClub:
+    def __init__(self):
+        """
+        Create a FootballClub object with an Attribute list to store the players from club
+        """
+        self.players = []
+
+    def add_player(self, name, age):
+        """
+        Add new players to the football club
+        Raise ValueError if conditions are not met
+        Print result to console
+        """
+        if not name:
+            raise ValueError("Please provide a valid name!")
+
+        try:
+            age = int(age)
+            if age < 18 or age > 50:
+                raise ValueError("Age should be between 18 and 50!")
+        except ValueError:
+            raise ValueError("Age must be a number between 18 and 50!")
+
+        player = Player(name, age)
+        self.players.append(player)
+        print(f"{name} has been added to the club!\n")
+
+"""
+club = FootballClub()
+
+try:
+    club.add_player("John Doe", 25)
+    club.add_player("Alice Smith", 30)
+    club.add_player("Bob Johnson", 20)
+except ValueError as e:
+    print(f"Error: {e}")
+"""
