@@ -80,11 +80,17 @@ class FootballClub:
         for player in self.players:
             if player.name == name:
                 self.players.remove(player)
-                print(f"{name} has been deleted from the club!")
+                print(f"{name} has been deleted from the club!\n")
                 return
-        print(f"{name} doesnt belong to this club!")
+        print(f"{name} doesnt belong to this club!\n")
 
     def list_all_players(self):
         """
         List all players in the football club
         """
+        if not self.players:
+            print("No players added in the club!\n")
+            return
+
+        for player in self.players:
+            print(player)
