@@ -28,11 +28,11 @@ class Player:
         Return the string containing player details
         """
         return f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored}, Games Played: {self.games_played}\n"
-
+"""
 player1 = Player("Dan Suciu", 43)
 
 print(player1)
-
+"""
 class FootballClub:
     def __init__(self):
         """
@@ -63,7 +63,16 @@ class FootballClub:
         player = Player(name, age)
         self.players.append(player)
         print(f"{name} has been added to the club!\n")
+    """
+    club = FootballClub()
 
+    try:
+        club.add_player("Dan Suciu", 43)
+        club.add_player("Chuck Norris", 40)
+        club.add_player("Dan Suciu", 43)
+    except ValueError as e:
+        print(f"Error: {e}")
+    """
     def delete_player(self, name):
         """
         Delete a player from the football club
@@ -75,12 +84,7 @@ class FootballClub:
                 return
         print(f"{name} doesnt belong to this club!")
 
-club = FootballClub()
-
-try:
-    club.add_player("Dan Suciu", 43)
-    club.add_player("Chuck Norris", 40)
-    club.add_player("Dan Suciu", 43)
-except ValueError as e:
-    print(f"Error: {e}")
-
+    def list_all_players(self):
+        """
+        List all players in the football club
+        """
