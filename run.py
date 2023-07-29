@@ -1,18 +1,25 @@
 import gspread
 from google.oauth2.service_account import Credentials
 
+# Define the required Google API scopes
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
 
+# Load Google service account credentials 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+
+# Authorize the Google Sheets API client
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+
+# Open the Google Sheet named 'Football_Club_TristanS'
 SHEET = GSPREAD_CLIENT.open('Football_Club_TristanS')
 
 
+# Add a class to represent a Player
 class Player:
     def __init__(self, name, age, goals_scored, games_played):
         """
@@ -30,6 +37,7 @@ class Player:
         return f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored}, Games Played: {self.games_played}\n"
 
 
+# Define a class to represent a Football Club
 class FootballClub:
     def __init__(self):
         """
@@ -65,6 +73,8 @@ class FootballClub:
             for player in self.players:
                 if player.name == name and player.age == age:
                     raise ValueError(f"{name}, Age: {age} already exists in the club!")
+
+            # Create a new Player object and add it to the list of players
             player = Player(name, age, goals_scored, games_played)
             self.players.append(player)
             print(f"{name} has been added to the club!\n")
@@ -98,6 +108,7 @@ def main():
     """
     Function to run the Football Club Automation System.
     Allow user to add players, delete players, list all players or exit the program.
+    Show statements if requirements not met.
     """
     football_club = FootballClub()
 
