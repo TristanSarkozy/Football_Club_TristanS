@@ -78,6 +78,15 @@ class FootballClub:
             player = Player(name, age, goals_scored, games_played)
             self.players.append(player)
             print(f"{name} has been added to the club!\n")
+
+            # Update Google Sheets
+            try:
+                worksheet = SHEET.worksheet("Players")
+                row = [name, age, games_played, goals_scored]
+                worksheet.append_row(row)
+                print("Data added to Google Sheets successfully!")
+            except Exception as e:
+                print(f"Failed to update Google Sheets. Error:[{e}]")
         else:
             raise ValueError("Name should only contain letters and no digits!")
 
