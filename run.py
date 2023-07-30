@@ -128,20 +128,47 @@ class FootballClub:
             player_data = player_data[1:]
 
             # Create Player objects from the data
-            players = []
             for row in player_data:
-                row = name, age, goals_scored, games_played
+                name, age, goals_scored, games_played = row
                 age = int(age)
                 goals_scored = int(goals_scored)
                 games_played = int(games_played)
                 player = Player(name, age, goals_scored, games_played)
-                players.append(player)
-
-            self.players.extend(player)
+                self.players.append(player)
 
         except Exception as e:
             print(f"Failed to fetch players from Google Sheets! Error: {e}")
             return
+
+    def update_player_data_in_sheet(self, name, age, goals_scored, games_played):
+        """
+        Update player data in the Google Sheets with the new values.
+        """
+        try:
+            worksheet = SHEET.worksheet("Players")
+            cell = worksheet.find(name)
+
+            # Get the row number of the player's data
+            row_number = cell.row
+
+            # Update age, games played, goals scored in Google Sheets
+            worksheet.update_cell(row_number, 2, age)
+            worksheet.update_cell(row_number, 3, games_played)
+            worksheet.update_cell(row_number, 4, goals_scored)
+
+            # for player in self.players:
+                # if player.name == name:
+                    # player.age = age
+                    # player.goals_scored = goals_scored
+                    # player.games_played = games_played
+                    # break
+
+            print(f"Player data for '{name}' updated in the Google Sheets!")
+        
+        except gspread.exceptions.CellNotFound:
+            print(f"Player with name '{name}' not found in the Google Sheets.")
+        except Exception as e:
+            print(f"Failed to update player data in Google Sheets. Error: {e}")
 
 
 def main():
@@ -222,32 +249,34 @@ def main():
                             new_age = int(input("Enter new age: "))
                             if new_age < 18 or new_age > 50:
                                 raise ValueError("Age should be between 18 and 50!")
-                            player.age = new_age
+                            # player.age = new_age
                             break
                         except ValueError as e:
                             print(f"Error: {e}")
-                        else:
-                            break
+                        # else:
+                            # break
 
                     while True:
                         try:
                             new_goals_scored = int(input("Enter updated goals:"))
-                            player.goals_scored = new_goals_scored
+                            # player.goals_scored = new_goals_scored
                             break
                         except ValueError:
                             print("Goals scored must be an integer!")
-                        else:
-                            break
+                        # else:
+                            # break
 
                     while True:
                         try:
                             new_games_played = int(input("Enter new games played: "))
-                            player.new_games_played = new_games_played
+                            # player.games_played = new_games_played
                             break
                         except ValueError:
                             print("Games played must be an integer!")
-                        else:
-                            break
+                        # else:
+                            # break
+
+                    football_club.update_player_data_in_sheet(name, new_age, new_goals_scored, new_games_played)
 
                     print("Player data updated successfully!\n")
                     break
