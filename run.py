@@ -112,6 +112,33 @@ class FootballClub:
         for player in self.players:
             print(player)
 
+    def load_players_from_sheet(self):
+        """
+        Load player data from the Google Sheets and store data
+        """
+        try:
+            worksheet = SHEET.worksheet("Players")
+            player_data = worksheet.get_all_values()
+
+            # Skip the header row
+            player_data = player_data[1:]
+
+            # Create Player objects from the data
+            players = []
+            for row in player_data:
+                row = name, age, goals_scored, games_played
+                age = int(age)
+                goals_scored = int(goals_scored)
+                games_played = int(games_played)
+                player = Player(name, age, goals_scored, games_played)
+                players.append(player)
+
+            self.players.extend(player)
+
+        except Exception as e:
+            print(f"Failed to fetch players from Google Sheets! Error: {e}")
+            return
+
 
 def main():
     """
