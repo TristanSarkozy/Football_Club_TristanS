@@ -19,8 +19,10 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Football_Club_TristanS')
 
 
-# Add a class to represent a Player
 class Player:
+    """
+    Add a class to represent a Player
+    """
     def __init__(self, name, age, goals_scored, games_played):
         """
         Create a Player object with the corresponding attributes
@@ -37,8 +39,10 @@ class Player:
         return f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored}, Games Played: {self.games_played}\n"
 
 
-# Define a class to represent a Football Club
 class FootballClub:
+    """
+    Add a class to represent a Football Club
+    """
     def __init__(self):
         """
         Create a FootballClub object with an Attribute list to store the players from club
@@ -143,20 +147,23 @@ class FootballClub:
 def main():
     """
     Function to run the Football Club Automation System.
-    Allow user to add players, delete players, list all players or exit the program.
+    Allow user to add players, delete players, list all players, 
+    edit an existing player or exit the program.
     Show statements if requirements not met.
     """
     football_club = FootballClub()
+    football_club.load_players_from_sheet()
 
     # Print the main menu 
     print("<<<<< Football Club Automation System >>>>>\n")
     print("1. Add Player")
     print("2. Delete Player")
     print("3. List All Players")
-    print("4. Exit\n")
+    print("4. Edit Player")
+    print("5. Exit\n")
 
     while True:
-        choice = input("Enter your choice (1/2/3/4): ")
+        choice = input("Enter your choice (1/2/3/4/5): ")
 
         if choice == '1':
             while True:
@@ -200,10 +207,54 @@ def main():
         elif choice == '2':
             name = input("Enter player name to delete: ")
             football_club.delete_player(name)
-        elif choice =='3':
+
+        elif choice == '3':
             print("List of all players: ")
             football_club.list_all_players()
+
         elif choice == '4':
+            name = input("Enter player name to edit: ")
+            for player in football_club.players:
+                if player.name == name:
+                    print(f"Player found:\n{player}")
+                    while True:
+                        try:
+                            new_age = int(input("Enter new age: "))
+                            if new_age < 18 or new_age > 50:
+                                raise ValueError("Age should be between 18 and 50!")
+                            player.age = new_age
+                            break
+                        except ValueError as e:
+                            print(f"Error: {e}")
+                        else:
+                            break
+
+                    while True:
+                        try:
+                            new_goals_scored = int(input("Enter updated goals:"))
+                            player.goals_scored = new_goals_scored
+                            break
+                        except ValueError:
+                            print("Goals scored must be an integer!")
+                        else:
+                            break
+
+                    while True:
+                        try:
+                            new_games_played = int(input("Enter new games played: "))
+                            player.new_games_played = new_games_played
+                            break
+                        except ValueError:
+                            print("Games played must be an integer!")
+                        else:
+                            break
+
+                    print("Player data updated successfully!\n")
+                    break
+            else:
+                print(f"Player with name '{name}' not found in the club.\n")
+
+        elif choice == '5':
             print("Exiting the program..")
             break
         else:
