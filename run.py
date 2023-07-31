@@ -75,8 +75,8 @@ class FootballClub:
 
             # Check if a player with the same name and age already exists
             for player in self.players:
-                if player.name == name and player.age == age:
-                    raise ValueError(f"{name}, Age: {age} already exists in the club!")
+                if player.name == name:
+                    raise ValueError(f"{name} already exists in the club!")
 
             # Create a new Player object and add it to the list of players
             player = Player(name, age, goals_scored, games_played)
