@@ -76,7 +76,8 @@ class FootballClub:
             # Check if a player with the same name and age already exists
             for player in self.players:
                 if player.name == name:
-                    raise ValueError(f"{name} already exists in the club!")
+                    print(f"\n{name} already exists in the club!")
+                    return
 
             # Create a new Player object and add it to the list of players
             player = Player(name, age, goals_scored, games_played)
@@ -190,42 +191,42 @@ def main():
     print("5. Exit\n")
 
     while True:
-        choice = input("Enter your choice (1/2/3/4/5): ")
+        choice = input("\nEnter your choice (1/2/3/4/5): ")
 
         if choice == '1':
             while True:
-                name = input("Enter player name: ")
+                name = input("\nEnter player name: ")
                 if not any(char.isdigit() for char in name):
                     break
                 else:
-                    print("Name should only contain letters and no digits!")
+                    print("\nName should only contain letters and no digits!")
 
             while True:
-                age = input("Enter player age: ")
+                age = input("\nEnter player age: ")
                 try:
                     age = int(age)
                     if age < 18 or age > 50:
-                        raise ValueError("Age should be between 18 and 50!")
+                        raise ValueError("\nAge should be between 18 and 50!")
                 except ValueError as e:
-                    print(f"Error: {e}")
+                    print(f"\nAge must be a number between 18 and 50!!! {e}")
                 else:
                     break
 
             while True:
-                goals_scored = input("Enter number of goals: ")
+                goals_scored = input("\nEnter number of goals: ")
                 try:
                     goals_scored = int(goals_scored)
                 except ValueError:
-                    print("Goals scored must be an integer!")
+                    print("\nGoals scored must be a number!")
                 else:
                     break
 
             while True:
-                games_played = input("Enter number of games played: ")
+                games_played = input("\nEnter number of games played: ")
                 try:
                     games_played = int(games_played)
                 except ValueError:
-                    print("Games played must be an integer!")
+                    print("\nGames played must be a number!")
                 else:
                     break
 
@@ -240,39 +241,39 @@ def main():
             football_club.list_all_players()
 
         elif choice == '4':
-            name = input("Enter player name to edit: ")
+            name = input("\nEnter player name to edit: ")
             for player in football_club.players:
                 if player.name == name:
-                    print(f"Player found:\n{player}")
+                    print(f"\nPlayer found:\n{player}")
                     while True:
                         try:
-                            new_age = int(input("Enter new age: "))
+                            new_age = int(input("\nEnter new age: "))
                             if new_age < 18 or new_age > 50:
-                                raise ValueError("Age should be between 18 and 50!")
+                                raise ValueError("\nAge should be between 18 and 50!")
                             # player.age = new_age
                             break
                         except ValueError as e:
-                            print(f"Error: {e}")
+                            print(f"\nAge must be a number between 18 and 50!!! {e}")
                         # else:
                             # break
 
                     while True:
                         try:
-                            new_goals_scored = int(input("Enter updated goals:"))
+                            new_goals_scored = int(input("\nEnter updated goals:"))
                             # player.goals_scored = new_goals_scored
                             break
                         except ValueError:
-                            print("Goals scored must be an integer!")
+                            print("\nGoals scored must be a number!")
                         # else:
                             # break
 
                     while True:
                         try:
-                            new_games_played = int(input("Enter new games played: "))
+                            new_games_played = int(input("\nEnter new games played: "))
                             # player.games_played = new_games_played
                             break
                         except ValueError:
-                            print("Games played must be an integer!")
+                            print("\nGames played must be a number!")
                         # else:
                             # break
 
