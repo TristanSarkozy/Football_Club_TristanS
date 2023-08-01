@@ -8,7 +8,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-# Load Google service account credentials 
+# Load Google service account credentials
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 
@@ -40,7 +40,7 @@ class Player:
             f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored},"
             f" Games Played: {self.games_played}\n"
         )
-                                                                                
+                                                               
 
 class FootballClub:
     """
@@ -48,7 +48,7 @@ class FootballClub:
     """
     def __init__(self):
         """
-        Create a FootballClub object with an Attribute list 
+        Create a FootballClub object with an Attribute list
         to store the players from the club.
         """
         self.players = []
@@ -66,7 +66,7 @@ class FootballClub:
                     raise ValueError("Age between 18 and 50!!!")
             except ValueError:
                 raise ValueError("Type a number between 18 and 50!!!")
-        
+
             try:
                 games_played = int(games_played)
             except ValueError:
@@ -151,7 +151,7 @@ class FootballClub:
             worksheet.update_cell(row_number, 4, goals_scored)
 
             print(f"Player data for '{name}' updated in the Google Sheets!")
-        
+
         except gspread.exceptions.CellNotFound:
             print(f"Player with name '{name}' not found in the Google Sheets.")
         except Exception as e:
@@ -161,14 +161,14 @@ class FootballClub:
 def main():
     """
     Function to run the Football Club Automation System.
-    Allow users to add players, delete players, list all players, 
+    Allow users to add players, delete players, list all players,
     edit an existing player or exit the program.
     Show statements if requirements are not met.
     """
     football_club = FootballClub()
     football_club.load_players_from_sheet()
 
-    # Print the main menu 
+    # Print the main menu
     print("<<<<< Football Club Automation System >>>>>\n")
     print("1. Add Player")
     print("2. List All Players")
