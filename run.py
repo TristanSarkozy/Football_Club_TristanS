@@ -95,16 +95,6 @@ class FootballClub:
         else:
             raise ValueError("Name should only contain letters and no digits!")
 
-    def delete_player(self, name):
-        """
-        Delete a player from the football club
-        """
-        for player in self.players:
-            if player.name == name:
-                self.players.remove(player)
-                print(f"{name} has been deleted from the club!\n")
-                return
-        print(f"{name} doesnt belong to this club!\n")
 
     def list_all_players(self):
         """
@@ -157,13 +147,6 @@ class FootballClub:
             worksheet.update_cell(row_number, 3, games_played)
             worksheet.update_cell(row_number, 4, goals_scored)
 
-            # for player in self.players:
-                # if player.name == name:
-                    # player.age = age
-                    # player.goals_scored = goals_scored
-                    # player.games_played = games_played
-                    # break
-
             print(f"Player data for '{name}' updated in the Google Sheets!")
         
         except gspread.exceptions.CellNotFound:
@@ -185,13 +168,12 @@ def main():
     # Print the main menu 
     print("<<<<< Football Club Automation System >>>>>\n")
     print("1. Add Player")
-    print("2. Delete Player")
-    print("3. List All Players")
-    print("4. Edit Player")
-    print("5. Exit\n")
+    print("2. List All Players")
+    print("3. Edit Player")
+    print("4. Exit\n")
 
     while True:
-        choice = input("\nEnter your choice (1/2/3/4/5): ")
+        choice = input("\nEnter your choice (1/2/3/4): ")
 
         if choice == '1':
             while True:
@@ -233,14 +215,10 @@ def main():
             football_club.add_player(name, age, goals_scored, games_played)
 
         elif choice == '2':
-            name = input("Enter player name to delete: ")
-            football_club.delete_player(name)
-
-        elif choice == '3':
             print("List of all players: ")
             football_club.list_all_players()
 
-        elif choice == '4':
+        elif choice == '3':
             name = input("\nEnter player name to edit: ")
             for player in football_club.players:
                 if player.name == name:
@@ -250,32 +228,23 @@ def main():
                             new_age = int(input("\nEnter new age: "))
                             if new_age < 18 or new_age > 50:
                                 raise ValueError("\nAge should be between 18 and 50!")
-                            # player.age = new_age
                             break
                         except ValueError as e:
                             print(f"\nAge must be a number between 18 and 50!!! {e}")
-                        # else:
-                            # break
 
                     while True:
                         try:
                             new_goals_scored = int(input("\nEnter updated goals:"))
-                            # player.goals_scored = new_goals_scored
                             break
                         except ValueError:
                             print("\nGoals scored must be a number!")
-                        # else:
-                            # break
 
                     while True:
                         try:
                             new_games_played = int(input("\nEnter new games played: "))
-                            # player.games_played = new_games_played
                             break
                         except ValueError:
                             print("\nGames played must be a number!")
-                        # else:
-                            # break
 
                     football_club.update_player_data_in_sheet(name, new_age, new_goals_scored, new_games_played)
 
@@ -284,7 +253,7 @@ def main():
             else:
                 print(f"Player with name '{name}' not found in the club.\n")
 
-        elif choice == '5':
+        elif choice == '4':
             print("Exiting the program..")
             break
         else:
