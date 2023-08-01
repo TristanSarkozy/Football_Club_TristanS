@@ -36,8 +36,11 @@ class Player:
         """
         Return the string containing player details
         """
-        return f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored}, Games Played: {self.games_played}\n"
-
+        return (
+            f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored},"
+            f" Games Played: {self.games_played}\n"
+        )
+                                                                                
 
 class FootballClub:
     """
@@ -45,7 +48,8 @@ class FootballClub:
     """
     def __init__(self):
         """
-        Create a FootballClub object with an Attribute list to store the players from club
+        Create a FootballClub object with an Attribute list 
+        to store the players from the club.
         """
         self.players = []
 
@@ -59,9 +63,9 @@ class FootballClub:
             try:
                 age = int(age)
                 if age < 18 or age > 50:
-                    raise ValueError("Age should be between 18 and 50!")
+                    raise ValueError("Age between 18 and 50!!!")
             except ValueError:
-                raise ValueError("Age must be a number between 18 and 50!")
+                raise ValueError("Type a number between 18 and 50!!!")
         
             try:
                 games_played = int(games_played)
@@ -94,7 +98,6 @@ class FootballClub:
                 print(f"Failed to update Google Sheets. Error:[{e}]")
         else:
             raise ValueError("Name should only contain letters and no digits!")
-
 
     def list_all_players(self):
         """
@@ -131,7 +134,7 @@ class FootballClub:
             print(f"Failed to fetch players from Google Sheets! Error: {e}")
             return
 
-    def update_player_data_in_sheet(self, name, age, goals_scored, games_played):
+    def up_sheet(self, name, age, goals_scored, games_played):
         """
         Update player data in the Google Sheets with the new values.
         """
@@ -158,9 +161,9 @@ class FootballClub:
 def main():
     """
     Function to run the Football Club Automation System.
-    Allow user to add players, delete players, list all players, 
+    Allow users to add players, delete players, list all players, 
     edit an existing player or exit the program.
-    Show statements if requirements not met.
+    Show statements if requirements are not met.
     """
     football_club = FootballClub()
     football_club.load_players_from_sheet()
@@ -188,9 +191,9 @@ def main():
                 try:
                     age = int(age)
                     if age < 18 or age > 50:
-                        raise ValueError("\nAge should be between 18 and 50!")
+                        raise ValueError("\nAge between 18 and 50!!!")
                 except ValueError as e:
-                    print(f"\nAge must be a number between 18 and 50!!! {e}")
+                    print(f"\nType a number between 18 and 50!!! {e}")
                 else:
                     break
 
@@ -227,26 +230,26 @@ def main():
                         try:
                             new_age = int(input("\nEnter new age: "))
                             if new_age < 18 or new_age > 50:
-                                raise ValueError("\nAge should be between 18 and 50!")
+                                raise ValueError("\nAge between 18 and 50!!!")
                             break
                         except ValueError as e:
-                            print(f"\nAge must be a number between 18 and 50!!! {e}")
+                            print(f"\nType a number between 18 and 50!!! {e}")
 
                     while True:
                         try:
-                            new_goals_scored = int(input("\nEnter updated goals:"))
+                            new_goals = int(input("\nAdd new goals:"))
                             break
                         except ValueError:
                             print("\nGoals scored must be a number!")
 
                     while True:
                         try:
-                            new_games_played = int(input("\nEnter new games played: "))
+                            new_games = int(input("\nAdd new games: "))
                             break
                         except ValueError:
                             print("\nGames played must be a number!")
 
-                    football_club.update_player_data_in_sheet(name, new_age, new_goals_scored, new_games_played)
+                    football_club.up_sheet(name, new_age, new_goals, new_games)
 
                     print("Player data updated successfully!\n")
                     break
