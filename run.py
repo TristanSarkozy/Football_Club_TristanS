@@ -176,18 +176,18 @@ def main():
     print("4. Exit\n")
 
     while True:
-        choice = input("\nEnter your choice (1/2/3/4): ")
+        choice = input("Enter your choice (1/2/3/4): \n")
 
         if choice == '1':
             while True:
-                name = input("\nEnter player name: ")
+                name = input("Enter player name: \n")
                 if not any(char.isdigit() for char in name):
                     break
                 else:
                     print("\nName should only contain letters and no digits!")
 
             while True:
-                age = input("\nEnter player age: ")
+                age = input("Enter player age: \n")
                 try:
                     age = int(age)
                     if age < 18 or age > 50:
@@ -198,7 +198,7 @@ def main():
                     break
 
             while True:
-                goals_scored = input("\nEnter number of goals: ")
+                goals_scored = input("Enter number of goals: \n")
                 try:
                     goals_scored = int(goals_scored)
                 except ValueError:
@@ -207,7 +207,7 @@ def main():
                     break
 
             while True:
-                games_played = input("\nEnter number of games played: ")
+                games_played = input("Enter number of games played: \n")
                 try:
                     games_played = int(games_played)
                 except ValueError:
@@ -222,13 +222,13 @@ def main():
             football_club.list_all_players()
 
         elif choice == '3':
-            name = input("\nEnter player name to edit: ")
+            name = input("Enter player name to edit: \n")
             for player in football_club.players:
                 if player.name == name:
                     print(f"\nPlayer found:\n{player}")
                     while True:
                         try:
-                            new_age = int(input("\nEnter new age: "))
+                            new_age = int(input("Enter new age: \n"))
                             if new_age < 18 or new_age > 50:
                                 raise ValueError("\nAge between 18 and 50!!!")
                             break
@@ -237,14 +237,14 @@ def main():
 
                     while True:
                         try:
-                            new_goals = int(input("\nAdd new goals:"))
+                            new_goals = int(input("Add new goals: \n"))
                             break
                         except ValueError:
                             print("\nGoals scored must be a number!")
 
                     while True:
                         try:
-                            new_games = int(input("\nAdd new games: "))
+                            new_games = int(input("Add new games: \n"))
                             break
                         except ValueError:
                             print("\nGames played must be a number!")
