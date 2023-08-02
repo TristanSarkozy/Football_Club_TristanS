@@ -2,6 +2,8 @@
 
 ## Purpose of the project
 The Football Club Automation System is a web application that allows users to manage and track player information for a football club. The application is designed to provide a user-friendly interface for adding, editing, and listing players, as well as integrating with Google Sheets for data storage and management.
+The deployed version can be accessed here:
+https://football-club-tristans-08ff5ecdb235.herokuapp.com/
 
 ![UI dev 2023-08-02 18-03-12](https://github.com/TristanSarkozy/Football_Club_TristanS/assets/114732027/7fd6bdb4-1fe3-4695-8bfc-dc7e91c1507a)
 
