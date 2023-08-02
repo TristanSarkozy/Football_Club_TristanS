@@ -35,14 +35,50 @@ The project is driven by user stories that reflect the needs and expectations of
 ### Exit 
 the application displays a message when exiting the program.
 ![exit 2023-08-02 19-09-18](https://github.com/TristanSarkozy/Football_Club_TristanS/assets/114732027/45193176-de82-4b04-b625-a1c4eac625e8)
-### Error Handling:
+### Error Handling
 - Throughout the application, proper error handling is implemented to catch various types of errors, such as invalid inputs, missing player names, or issues with updating Google Sheets.
 - When errors occur, the application displays clear error messages to guide users and provide feedback on what went wrong.
-### User Interface:
+### User Interface
 - The application uses HTML templates to provide a user-friendly interface for inputting data, viewing player lists, and displaying error messages.
-### Google Sheets Integration:
+### Google Sheets Integration
 - The application integrates with Google Sheets to store player information in a structured format.
 - It uses the gspread library and Google service account credentials to authenticate and interact with Google Sheets.
 ![gspread 2023-08-02 19-15-11](https://github.com/TristanSarkozy/Football_Club_TristanS/assets/114732027/5204d14e-db53-4f76-be68-e5f05669e55f)
 ## Future Features
-- a 'delete player' option to delete a player from the club and Google Sheets.
+ 
+ A 'delete player' option to delete a player from the club and Google Sheets.
+
+ ## Flowchart
+ This flowchart provides a visual representation of the logical flow and decision points within the Football Club Automation System.
+ ![Flowchart 2023-08-02 21-15-55](https://github.com/TristanSarkozy/Football_Club_TristanS/assets/114732027/eb44ba05-0d93-447c-93a1-a23fb6ec1e51)
+
+## Technology
+- Python for the backend logic.
+- HTML for the frontend user interface.
+- Google Sheets API (gspread) for integrating with Google Sheets.
+- Github.
+- Gitpod
+- Heroku for deployment.
+
+## Testing
+The code was manually tested by doing the following:
+- Passed the code through a PEP8 linter and confirmed there are no problems.
+- The functionality was checked step by step with invalid inputs.
+
+## Fixed Bugs
+- Only minor bugs were found.
+
+## Deployment
+- Application developed and tested using Gitpod, a cloud-based development environment.
+- The application is designed to be deployed on the Heroku platform, making it accessible to users via a web browser.
+### Steps for deployment:
+- Create a new Heroku application.
+- Create a new Config_Var.
+- Set the buildbacks to Python and NodeJS.
+- Link the Heroku app to the repository.
+- Click on Deploy button.
+
+## Credits
+- Love-Sandwiches project.
+- Code Institute support(Slack groups, mentor, LMS).
+- Stack Overflow, Youtube, W3Schools.
