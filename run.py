@@ -40,7 +40,7 @@ class Player:
             f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored},"
             f" Games Played: {self.games_played}\n"
         )
-                                                               
+                                       
 
 class FootballClub:
     """
@@ -59,6 +59,11 @@ class FootballClub:
         Raise ValueError if conditions are not met.
         Print statements.
         """
+        special_characters = "!@#$%^&*()-+?_=,<>/"
+
+        if any(c in special_characters for c in name):
+            raise ValueError("Name contains special characters!")
+
         if not any(char.isdigit() for char in name):
             try:
                 age = int(age)
@@ -69,13 +74,17 @@ class FootballClub:
 
             try:
                 games_played = int(games_played)
+                if games_played < 0 or games_played > 10000:
+                    raise ValueError("Games from 0 to 10000!\n")
             except ValueError:
-                raise ValueError("Games played must be a number!")
+                print("\nType a number from 0 to 10000!")
 
             try:
                 goals_scored = int(goals_scored)
+                if goals_scored < 0 or goals_scored > 10000:
+                    raise ValueError("Goals from 0 to 10000!\n")
             except ValueError:
-                raise ValueError("Goals scored must be a number!")
+                print("\nType a number from 0 to 10000!")
 
             # Check if a player with the same name and age already exists
             for player in self.players:
@@ -97,7 +106,7 @@ class FootballClub:
             except Exception as e:
                 print(f"Failed to update Google Sheets. Error:[{e}]")
         else:
-            raise ValueError("Name should only contain letters and no digits!")
+            raise ValueError("Name should only contain letters!")
 
     def list_all_players(self):
         """
@@ -184,7 +193,7 @@ def main():
                 if not any(char.isdigit() for char in name):
                     break
                 else:
-                    print("\nName should only contain letters and no digits!")
+                    print("\nName should only contain letters!")
 
             while True:
                 age = input("Enter player age: \n")
@@ -201,8 +210,10 @@ def main():
                 goals_scored = input("Enter number of goals: \n")
                 try:
                     goals_scored = int(goals_scored)
+                    if goals_scored < 0 or goals_scored > 10000:
+                        raise ValueError("Goals from 0 to 10000!\n")
                 except ValueError:
-                    print("\nGoals scored must be a number!")
+                    print("\nType a number from 0 to 10000!")
                 else:
                     break
 
@@ -210,8 +221,10 @@ def main():
                 games_played = input("Enter number of games played: \n")
                 try:
                     games_played = int(games_played)
+                    if games_played < 0 or games_played > 10000:
+                        raise ValueError("Games from 0 to 10000!\n")
                 except ValueError:
-                    print("\nGames played must be a number!")
+                    print("\nType a number from 0 to 10000!")
                 else:
                     break
 
@@ -238,13 +251,17 @@ def main():
                     while True:
                         try:
                             new_goals = int(input("Add new goals: \n"))
+                            if new_goals < 0 or new_goals > 10000:
+                                raise ValueError("Goals from 0 to 10000!\n")
                             break
                         except ValueError:
-                            print("\nGoals scored must be a number!")
+                            print("\nType a number from 0 to 10000\n!")
 
                     while True:
                         try:
                             new_games = int(input("Add new games: \n"))
+                            if new_games < 0 or new_games > 10000:
+                                raise ValueError("games from 0 to 10000!\n")
                             break
                         except ValueError:
                             print("\nGames played must be a number!")
@@ -263,6 +280,5 @@ def main():
             print("Invalid choice. Please try again!")
 
 
-# Check if the script runs as the main
 if __name__ == "__main__":
     main()
