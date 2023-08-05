@@ -40,7 +40,7 @@ class Player:
             f"{self.name}, Age: {self.age}, Goals Scored: {self.goals_scored},"
             f" Games Played: {self.games_played}\n"
         )
-                                       
+                                     
 
 class FootballClub:
     """
