@@ -264,7 +264,7 @@ def main():
                                 raise ValueError("Games from 0 to 10000!\n")
                             break
                         except ValueError:
-                            print("\nGames played must be a number!")
+                            print("\nType a number from 0 to 10000!")
 
                     football_club.up_sheet(name, new_age, new_goals, new_games)
 
