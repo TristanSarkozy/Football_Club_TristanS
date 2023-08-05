@@ -255,13 +255,13 @@ def main():
                                 raise ValueError("Goals from 0 to 10000!\n")
                             break
                         except ValueError:
-                            print("\nType a number from 0 to 10000\n!")
+                            print("\nType a number from 0 to 10000!\n")
 
                     while True:
                         try:
                             new_games = int(input("Add new games: \n"))
                             if new_games < 0 or new_games > 10000:
-                                raise ValueError("games from 0 to 10000!\n")
+                                raise ValueError("Games from 0 to 10000!\n")
                             break
                         except ValueError:
                             print("\nGames played must be a number!")
